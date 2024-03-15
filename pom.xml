@@ -21,6 +21,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <json-version>20240303</json-version>
     <assertj.version>3.24.2</assertj.version>
+    <rest-assured.version>5.3.2</rest-assured.version>
     <rest-assured-mock-mvc.version>5.3.2</rest-assured-mock-mvc.version>
   </properties>
 
@@ -44,6 +45,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.vaadin.external.google</groupId>
+          <artifactId>android-json</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -63,6 +70,13 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>${json-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>${rest-assured.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>

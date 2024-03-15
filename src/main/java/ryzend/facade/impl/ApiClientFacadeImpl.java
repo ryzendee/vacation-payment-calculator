@@ -3,9 +3,11 @@ package ryzend.facade.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import ryzend.exception.custom.ApiClientFacadeException;
 import ryzend.facade.ApiClientFacade;
 import ryzend.utils.client.ApiClient;
+import ryzend.utils.client.ApiClientImpl;
 import ryzend.utils.parser.WorkDayParser;
 
 @Component
@@ -22,7 +24,7 @@ public class ApiClientFacadeImpl implements ApiClientFacade {
             log.info("Started generating request");
             String response = apiClient.sendRequest(url);
             return workDayParser.extractWorkDays(response);
-        } catch (IllegalArgumentException ex) {
+        } catch (RestClientException | IllegalArgumentException ex) {
             log.error("Error while sending request: " + ex.getMessage());
             throw new ApiClientFacadeException("Error while sending request: " + ex.getMessage());
         }

@@ -27,7 +27,10 @@ public class DateFormatterImpl implements DateFormatter {
         return format(from) + separator + format(to);
     }
     @Override
-    public String format(LocalDate date) throws IllegalArgumentException {
+    public String format(LocalDate date) {
+        if (date == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
         return date.format(DateTimeFormatter.ofPattern(pattern));
     }
 }

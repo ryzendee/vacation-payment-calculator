@@ -1,5 +1,6 @@
 package ryzend.utils.formatter;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -12,7 +13,8 @@ public class DateFormatterImpl implements DateFormatter {
     private final String pattern;
     private final String separator;
 
-    public DateFormatterImpl(String pattern, String separator) {
+    public DateFormatterImpl(@Value("${format.date.pattern}") String pattern,
+                             @Value("${format.date.separator}") String separator) {
         if (pattern.isBlank() || separator.isBlank()) {
             throw new IllegalArgumentException("Pattern and separator must not be blank.");
         }

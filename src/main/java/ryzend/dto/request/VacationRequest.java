@@ -1,6 +1,7 @@
 package ryzend.dto.request;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @Builder
 public class VacationRequest {
 
@@ -25,6 +25,9 @@ public class VacationRequest {
 
     @AssertTrue(message = "from date must be before to date")
     public boolean isFromDateBeforeToDate() {
+        if (from == null || to == null) {
+            return false;
+        }
         return from.isBefore(to);
     }
 }

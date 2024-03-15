@@ -1,0 +1,17 @@
+server:
+  port: 8090
+
+calendar-api:
+  base-url: https://production-calendar.ru/get/ru/{interval}/json?compact=true
+  to-replace: '{interval}'
+
+
+parse:
+  json-object: statistic
+  json-key: work_days
+
+
+format:
+  date:
+    pattern: ddMMyyyy
+    separator: '-'
